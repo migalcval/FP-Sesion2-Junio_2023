@@ -4,10 +4,26 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import fp.utiles.Checkers;
+import fp.utiles.Ficheros;
+
 
 public class FactoriaPaises {
+	
+	public static List<Pais> leePais(String rutaFichero){
+		
+		Checkers.checkNoNull(rutaFichero);
+		List<String> lineas = Ficheros.leeFichero("Error al leer el fichero", rutaFichero);
+		lineas.remove(0);
+		
+		List<Pais> res = new ArrayList<Pais>();
+		
+		for(String linea:lineas) {
+			Pais p = parseaPais(linea);
+			res.add(p);
+		}
+		return res;
+	}
 	
 	public static Pais parseaPais(String cadena) {
 		
